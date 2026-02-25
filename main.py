@@ -5,15 +5,22 @@ Endpoints:
   POST /query   — answer a natural language question with cited sources
 """
 
+from contextlib import asynccontextmanager
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel, Field
 from src.vector_store import ingest_documents
 from src.query_engine import answer_question
 
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    ingest_documents(DATA_DIR)
+    yield
+
 app = FastAPI(
     title="RAG Policy Q&A API",
     description="Retrieval-Augmented Generation over ISO 27001 policy documents.",
-    version="1.0.0"
+    version="1.0.0",
+    lifespan=lifespan
 )
 
 DATA_DIR = "data"
