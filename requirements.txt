@@ -6,3 +6,5 @@ tiktoken==0.7.0
 numpy==1.26.4
 python-dotenv==1.0.1
 pydantic==2.7.1
+rank-bm25==0.2.2
+sse-starlette==1.8.2

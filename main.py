@@ -1,20 +1,30 @@
 """
 FastAPI RAG API
 Endpoints:
-  POST /ingest  — chunk, embed and index all documents in /data
-  POST /query   — answer a natural language question with cited sources
+  POST /ingest          — chunk, embed and index all documents in /data
+  POST /query           — answer a natural language question with cited sources
+  POST /query (stream)  — stream answer tokens via SSE when stream=true
+  GET  /ingest/status   — audit log of all ingestion runs
+  GET  /health          — health check
 """
 
 from contextlib import asynccontextmanager
 from fastapi import FastAPI, HTTPException
+from fastapi.responses import StreamingResponse
 from pydantic import BaseModel, Field
-from src.vector_store import ingest_documents
-from src.query_engine import answer_question
+from src.vector_store import ingest_documents, get_ingest_status
+from src.query_engine import answer_question, answer_question_stream
+
+DATA_DIR = "data"
+
+
+# ─── Lifespan: auto-ingest on startup ────────────────────────────────────────
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     ingest_documents(DATA_DIR)
     yield
+
 
 app = FastAPI(
     title="RAG Policy Q&A API",
@@ -23,10 +33,8 @@ app = FastAPI(
     lifespan=lifespan
 )
 
-DATA_DIR = "data"
 
-
-# ─── Request / Response Models ───────────────────────────────────────────────
+# ─── Request / Response Models ────────────────────────────────────────────────
 
 class IngestResponse(BaseModel):
     status: str
@@ -37,6 +45,7 @@ class IngestResponse(BaseModel):
 class QueryRequest(BaseModel):
     question: str
     top_k: int = Field(default=5, ge=1, le=10)
+    stream: bool = False
 
 
 class SourceItem(BaseModel):
@@ -55,7 +64,7 @@ class QueryResponse(BaseModel):
     embedding_model: str
 
 
-# ─── Endpoints ───────────────────────────────────────────────────────────────
+# ─── Endpoints ────────────────────────────────────────────────────────────────
 
 @app.post("/ingest", response_model=IngestResponse)
 def ingest():
@@ -70,19 +79,33 @@ def ingest():
         raise HTTPException(status_code=500, detail=str(e))
 
 
-@app.post("/query", response_model=QueryResponse)
-def query(request: QueryRequest):
+@app.post("/query")
+async def query(request: QueryRequest):
     """
     Accept a natural language question and return a grounded answer
     with cited source documents.
+    If stream=true, returns a Server-Sent Events (SSE) stream of tokens,
+    with a final event: sources block appended at the end.
     """
     if not request.question.strip():
         raise HTTPException(status_code=400, detail="Question cannot be empty.")
+
     try:
+        if request.stream:
+            return StreamingResponse(
+                answer_question_stream(request.question, top_k=request.top_k),
+                media_type="text/event-stream"
+            )
         result = answer_question(request.question, top_k=request.top_k)
         return result
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
+
+
+@app.get("/ingest/status")
+def ingest_status():
+    """Return audit log of all ingestion runs."""
+    return {"runs": get_ingest_status()}
 
 
 @app.get("/health")
