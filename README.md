@@ -1,10 +1,9 @@
 # RAG Policy Q&A API
 
-A production-ready Retrieval-Augmented Generation (RAG) API built with FastAPI and OpenAI.
-Ingests 20 ISO 27001 security policy documents, indexes them using OpenAI embeddings,
-and answers natural language questions with cited, grounded responses.
+FastAPI service that answers natural language questions over a corpus of ISO 27001 security policy documents. Uses OpenAI embeddings for semantic search and GPT for answer generation, with hybrid BM25 retrieval on top.
 
 ## Architecture
+
 ```
 ┌─────────────┐     POST /ingest        ┌──────────────────┐     OpenAI API
 │   Client    │ ──────────────────────▶ │                  │ ──────────────▶ text-embedding-3-small
@@ -28,43 +27,40 @@ and answers natural language questions with cited, grounded responses.
                                       └─────────────────────────┘
 ```
 
-## Setup & Run
+## Getting Started
 
 ### Requirements
-- Docker Desktop installed and running
+- Docker Desktop
 - OpenAI API key
 
 ### Steps
 
-1. Clone the repository:
+1. Clone the repo:
 ```bash
-   git clone git clone https://github.com/mukit-ds/rag-policy-qa.git
-   cd rag-policy-qa
+git clone https://github.com/mukit-ds/rag-policy-qa.git
+cd rag-policy-qa
 ```
 
-2. Create your `.env` file:
+2. Set up your env file:
 ```bash
-   cp .env.example .env
+cp .env.example .env
 ```
-   Open `.env` and replace `your-openai-api-key-here` with your actual OpenAI API key.
+Edit `.env` and add your OpenAI API key.
 
-3. Start the full stack:
+3. Start the server:
 ```bash
-   docker compose up --build
+docker compose up --build
 ```
 
-4. The API is now running at `http://localhost:8000`
-5. Open Swagger UI: `http://localhost:8000/docs`
+The API runs on `http://localhost:8000`. Documents are ingested automatically on startup — no extra steps needed.
 
-> **Note:** Documents are automatically ingested on startup. No manual `/ingest` call needed.
+Swagger UI is available at `http://localhost:8000/docs`.
 
-## API Endpoints
+## Endpoints
 
 ### POST /ingest
-Ingests all documents from `/data`, chunks them, embeds via OpenAI, and stores vectors.
-Idempotent — safe to call multiple times.
+Loads all 20 policy files from `/data`, splits them into chunks, embeds via OpenAI and stores in memory. Calling this multiple times is safe — already-indexed chunks are skipped.
 
-**Response:**
 ```json
 {
   "status": "ok",
@@ -74,10 +70,8 @@ Idempotent — safe to call multiple times.
 ```
 
 ### POST /query
-Accepts a natural language question and returns a grounded answer with cited sources.
-Supports optional streaming via SSE when `stream: true`.
+Retrieves the most relevant chunks for a question and returns a grounded answer with source citations. `top_k` controls how many chunks to retrieve (1–10, default 5).
 
-**Standard request:**
 ```json
 {
   "question": "How long must audit logs be retained?",
@@ -85,16 +79,7 @@ Supports optional streaming via SSE when `stream: true`.
 }
 ```
 
-**Streaming request:**
-```json
-{
-  "question": "How long must audit logs be retained?",
-  "top_k": 5,
-  "stream": true
-}
-```
-
-**Standard response:**
+Response:
 ```json
 {
   "answer": "Audit logs must be retained for a total of 36 months...",
@@ -111,20 +96,18 @@ Supports optional streaming via SSE when `stream: true`.
 }
 ```
 
-**Streaming response (SSE):**
+Pass `"stream": true` to get a token-by-token SSE stream instead:
 ```
 data: {"token": "Audit"}
 data: {"token": " logs"}
-data: {"token": " must"}
 ...
 event: sources
 data: {"sources": [...], "model_used": "gpt-4o-mini", "embedding_model": "text-embedding-3-small"}
 ```
 
 ### GET /ingest/status
-Returns an audit log of all ingestion runs stored in SQLite.
+Returns a log of every ingest run — useful for tracking token usage over time.
 
-**Response:**
 ```json
 {
   "runs": [
@@ -140,99 +123,86 @@ Returns an audit log of all ingestion runs stored in SQLite.
 ```
 
 ### GET /health
-Health check endpoint.
+Basic health check.
 
 ## Hybrid Search
 
-Retrieval combines **dense** and **sparse** search using **Reciprocal Rank Fusion (RRF)**:
+Retrieval combines dense and sparse search via Reciprocal Rank Fusion (RRF):
 
-- **Dense retrieval** — OpenAI `text-embedding-3-small` embeddings with cosine similarity
-- **Sparse retrieval** — BM25 (Okapi) keyword matching via `rank-bm25`
-- **Fusion formula:**
+- **Dense** — cosine similarity over OpenAI `text-embedding-3-small` embeddings
+- **Sparse** — BM25 (Okapi) keyword scoring via `rank-bm25`
+- **Fusion:**
+
 ```
 RRF_score(d) = Σ 1 / (k + rank(d))
 ```
 
-Where:
-- `k = 60` (standard RRF constant to dampen high rankings)
-- `rank(d)` is the 1-based position of document `d` in each ranked list
-- Scores from both dense and sparse lists are summed per document
-- Final ranking is by descending RRF score
-
-This approach improves recall for both semantic and keyword-heavy queries.
+`k = 60` is the standard dampening constant. Each document gets scores from both lists summed together, then results are sorted by the combined RRF score. This helps with queries that are either keyword-heavy or more semantic in nature.
 
 ## Environment Variables
 
 | Variable | Default | Description |
 |---|---|---|
-| `OPENAI_API_KEY` | — | Your OpenAI API key (required) |
+| `OPENAI_API_KEY` | — | Required |
 | `EMBEDDING_MODEL` | `text-embedding-3-small` | OpenAI embedding model |
-| `COMPLETION_MODEL` | `gpt-4o-mini` | OpenAI completion model |
-| `TOP_K_DEFAULT` | `5` | Default number of chunks to retrieve |
+| `COMPLETION_MODEL` | `gpt-4o-mini` | OpenAI chat model |
+| `TOP_K_DEFAULT` | `5` | Default chunks to retrieve |
 
-## Design Decisions
+## Design Notes
 
-- **Auto-ingest on startup** — `lifespan` event handler runs ingestion automatically so `docker compose up` is truly the only command needed.
-- **Hybrid search** — Combines dense (semantic) and sparse (keyword) retrieval via RRF for more robust results across different query types.
-- **In-memory vector store** — No external vector DB required. Keeps the stack simple with a single Docker service. Trade-off: vectors are lost on container restart, requiring re-ingestion.
-- **Word-based chunking** — 400-word chunks with 80-word overlap balances context preservation and retrieval precision.
-- **Idempotent ingestion** — Each chunk is hashed (MD5) to prevent duplicate vectors when `/ingest` is called multiple times.
-- **SQLite audit log** — Lightweight persistent log of every ingestion run including token cost estimates.
-- **SSE streaming** — Answer tokens are streamed in real time with a final `event: sources` block appended at the end.
+I went with an in-memory vector store to keep the stack simple — no external dependencies means `docker compose up` really is the only command needed. The trade-off is that vectors are rebuilt on each container start, but since ingestion runs automatically at startup this is transparent to the caller.
+
+Chunks are 400 words with 80-word overlap. I tried smaller chunk sizes but found the context window ended up too narrow for some of the denser policy sections. MD5 hashing on chunk content ensures the `/ingest` endpoint is idempotent.
+
+For retrieval, pure semantic search worked well on most queries but struggled with exact term lookups (policy IDs, specific role names). Adding BM25 alongside the embeddings and merging with RRF improved results on those cases noticeably.
 
 ## Known Limitations
 
-- Vectors are stored in memory — restarting the container requires re-ingestion (happens automatically on startup).
-- No persistent vector storage — a production system should use a vector DB (e.g., Pinecone, Qdrant, pgvector).
-- Single container — no horizontal scaling support in current setup.
-
-## Estimated OpenAI Token Usage
-
-| Operation | Model | Estimated Tokens | Estimated Cost |
-|---|---|---|---|
-| Ingestion (20 docs) | text-embedding-3-small | ~40,000 tokens | ~$0.001 |
-| Per query | text-embedding-3-small | ~500 tokens | <$0.0001 |
-| Per query | gpt-4o-mini | ~2,000 tokens | ~$0.001 |
-
-**Total for ingestion + 5 evaluation queries: ~$0.01**
+- Vectors live in memory, so a container restart triggers re-ingestion. In production I'd swap this out for something like Qdrant or pgvector.
+- No conversation history — each query is independent. Follow-up questions don't have context from previous turns.
+- Single container setup, no load balancing.
 
 ## Problem Understanding
 
-The task requires building a production-ready RAG system over 20 ISO 27001 information security policy documents. The core challenge is:
-- Accurately retrieving the most relevant policy chunks for a given natural language question
-- Generating grounded, cited answers that are traceable back to the source document
-- Ensuring the system is fully reproducible with a single `docker compose up` command
+The goal was to build a Q&A system that can accurately retrieve answers from 20 security policy documents and return grounded, cited responses. The main challenges were getting retrieval right across both semantic and keyword-heavy queries, and making sure the system starts cleanly with no manual setup.
 
 ## Approach
 
-1. **Document ingestion** — All 20 policy `.txt` files are loaded, split into overlapping 400-word chunks (80-word overlap), and embedded using OpenAI `text-embedding-3-small`
-2. **Hybrid retrieval** — Queries are matched using both dense (cosine similarity over OpenAI embeddings) and sparse (BM25 keyword) retrieval, merged via Reciprocal Rank Fusion (RRF)
-3. **Answer generation** — Top-k retrieved chunks are passed as context to `gpt-4o-mini` with a strict system prompt to answer only from the provided context and cite sources
-4. **Idempotency** — Each chunk is MD5-hashed to prevent duplicate indexing on repeated `/ingest` calls
-5. **Auto-ingest** — FastAPI lifespan handler triggers ingestion on startup so no manual steps are needed after `docker compose up`
+Documents are split into overlapping word-based chunks and embedded using `text-embedding-3-small`. At query time, both dense (cosine similarity) and sparse (BM25) retrieval are run and merged using RRF. The top-k chunks are passed to `gpt-4o-mini` as context with a prompt that instructs it to answer only from the provided text and cite its source.
 
-## Experiments & Results
+Ingestion is triggered automatically via FastAPI's lifespan handler so the API is ready to answer queries immediately after `docker compose up`.
 
-All 5 evaluation questions from `questions.json` were tested against the API:
+## Results
 
-| Q# | Question Summary | Expected Source | Answer Correct | Source Correct |
-|---|---|---|---|---|
-| Q1 | Access review period for standard users | policy_01_access_control.txt | ✅ 180 days | ✅ |
-| Q2 | Who declares a security incident? | policy_02_incident_response.txt | ✅ CISO / Incident Commander | ✅ |
-| Q3 | Total audit log retention period | policy_03_audit_logging.txt | ✅ 36 months | ✅ |
-| Q4 | Encryption standard for data at rest | policy_07_data_encryption_at_rest.txt | ✅ AES-256 via TDE | ✅ |
-| Q5 | SLA for Critical vulnerability on Tier 1 | policy_12_patch_sla.txt | ✅ 24 hours | ✅ |
+Tested against all 5 questions in `questions.json`:
 
-**Result: 5/5 correct answers, 5/5 correct source citations**
+| # | Question | Source | Answer |
+|---|---|---|---|
+| Q1 | Access review period for standard users | policy_01_access_control.txt | 180 days |
+| Q2 | Who declares a security incident? | policy_02_incident_response.txt | CISO / Incident Commander |
+| Q3 | Total audit log retention | policy_03_audit_logging.txt | 36 months |
+| Q4 | Encryption standard for data at rest | policy_07_data_encryption_at_rest.txt | AES-256 via TDE |
+| Q5 | SLA for Critical vuln on Tier 1 | policy_12_patch_sla.txt | 24 hours |
+
+All 5 returned the correct answer citing the correct source document.
 
 ## Next Steps
 
-- **Persistent vector store** — Replace in-memory store with a dedicated vector DB (e.g., Qdrant, pgvector) so vectors survive container restarts without re-ingestion
-- **Re-ranking** — Add a cross-encoder re-ranker (e.g., `cross-encoder/ms-marco-MiniLM`) between retrieval and generation for improved precision
-- **Evaluation framework** — Integrate RAGAS or TruLens for automated faithfulness, answer relevance, and context precision scoring
-- **Multi-turn conversations** — Add conversation history support for follow-up questions
-- **Larger embedding model** — Experiment with `text-embedding-3-large` for improved retrieval accuracy on complex queries
+- Swap in-memory store for a persistent vector DB (Qdrant or pgvector) so restarts don't require re-ingestion
+- Add a cross-encoder re-ranker after retrieval to improve precision on ambiguous queries
+- Add conversation history support for multi-turn Q&A
+- Experiment with `text-embedding-3-large` on harder queries
+- Plug in RAGAS for automated evaluation of retrieval and answer quality
 
+## Estimated OpenAI Token Usage
+
+| Operation | Model | Tokens | Cost |
+|---|---|---|---|
+| Ingestion (20 docs) | text-embedding-3-small | ~40,000 | ~$0.001 |
+| Per query | text-embedding-3-small | ~500 | <$0.0001 |
+| Per query | gpt-4o-mini | ~2,000 | ~$0.001 |
+
+Total for ingestion + 5 evaluation queries: roughly $0.01.
 
 ## Dependencies
 
@@ -240,11 +210,9 @@ All 5 evaluation questions from `questions.json` were tested against the API:
 |---|---|
 | `fastapi` | API framework |
 | `uvicorn` | ASGI server |
-| `openai` | Embeddings + completions |
-| `rank-bm25` | Sparse BM25 retrieval |
-| `sse-starlette` | Server-Sent Events streaming |
-| `numpy` | Vector operations |
-| `python-dotenv` | Environment variable loading |
+| `openai` | Embeddings and completions |
+| `rank-bm25` | BM25 sparse retrieval |
+| `sse-starlette` | SSE streaming |
+| `numpy` | Vector math |
+| `python-dotenv` | Env var loading |
 | `pydantic` | Request/response validation |
-
-
