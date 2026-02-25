@@ -1,13 +1,3 @@
-"""
-FastAPI RAG API
-Endpoints:
-  POST /ingest          — chunk, embed and index all documents in /data
-  POST /query           — answer a natural language question with cited sources
-  POST /query (stream)  — stream answer tokens via SSE when stream=true
-  GET  /ingest/status   — audit log of all ingestion runs
-  GET  /health          — health check
-"""
-
 from contextlib import asynccontextmanager
 from fastapi import FastAPI, HTTPException
 from fastapi.responses import StreamingResponse
@@ -18,23 +8,20 @@ from src.query_engine import answer_question, answer_question_stream
 DATA_DIR = "data"
 
 
-# ─── Lifespan: auto-ingest on startup ────────────────────────────────────────
-
 @asynccontextmanager
 async def lifespan(app: FastAPI):
+    # kick off ingestion when the server starts so /query works immediately
     ingest_documents(DATA_DIR)
     yield
 
 
 app = FastAPI(
     title="RAG Policy Q&A API",
-    description="Retrieval-Augmented Generation over ISO 27001 policy documents.",
+    description="Q&A over ISO 27001 policy documents using OpenAI embeddings and GPT.",
     version="1.0.0",
     lifespan=lifespan
 )
 
-
-# ─── Request / Response Models ────────────────────────────────────────────────
 
 class IngestResponse(BaseModel):
     status: str
@@ -64,17 +51,14 @@ class QueryResponse(BaseModel):
     embedding_model: str
 
 
-# ─── Endpoints ────────────────────────────────────────────────────────────────
-
 @app.post("/ingest", response_model=IngestResponse)
 def ingest():
     """
-    Ingest all documents from /data, chunk them, embed via OpenAI,
-    and store vectors. Idempotent — safe to call multiple times.
+    Load all .txt files from /data, chunk and embed them, then store in memory.
+    Safe to call multiple times — duplicate chunks are skipped.
     """
     try:
-        result = ingest_documents(DATA_DIR)
-        return result
+        return ingest_documents(DATA_DIR)
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
@@ -82,33 +66,28 @@ def ingest():
 @app.post("/query")
 async def query(request: QueryRequest):
     """
-    Accept a natural language question and return a grounded answer
-    with cited source documents.
-    If stream=true, returns a Server-Sent Events (SSE) stream of tokens,
-    with a final event: sources block appended at the end.
+    Takes a question, finds the most relevant policy chunks, and returns
+    a grounded answer with source citations. Pass stream=true for SSE output.
     """
     if not request.question.strip():
         raise HTTPException(status_code=400, detail="Question cannot be empty.")
-
     try:
         if request.stream:
             return StreamingResponse(
                 answer_question_stream(request.question, top_k=request.top_k),
                 media_type="text/event-stream"
             )
-        result = answer_question(request.question, top_k=request.top_k)
-        return result
+        return answer_question(request.question, top_k=request.top_k)
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
 
 @app.get("/ingest/status")
 def ingest_status():
-    """Return audit log of all ingestion runs."""
+    """Shows a history of every ingest run with token cost estimates."""
     return {"runs": get_ingest_status()}
 
 
 @app.get("/health")
 def health():
-    """Health check endpoint."""
     return {"status": "ok"}
