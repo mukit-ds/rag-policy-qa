@@ -1,0 +1,43 @@
+ACCEPTABLE USE POLICY (AUP)
+Document ID: ISP-020 | Version: 3.5 | Classification: Internal
+Effective Date: 01 January 2024 | Review Date: 31 December 2024
+
+1. PURPOSE
+This policy defines the acceptable use of organisational information systems, equipment, and data by employees, contractors, and authorised users, in accordance with ISO/IEC 27001:2022 Annex A Control 5.10.
+
+2. SCOPE
+This policy applies to all individuals who access organisational information assets, including: full-time and part-time employees, contractors and consultants, temporary workers and agency staff, and authorised third parties.
+
+3. GENERAL ACCEPTABLE USE
+3.1 Organisational systems and devices are provided for business purposes. Incidental personal use is tolerated provided it: does not interfere with work duties, does not consume excessive network resources, does not expose the organisation to legal risk, and complies with all other provisions of this policy.
+3.2 All activity on organisational systems is subject to monitoring and logging in accordance with ISP-003. Users have no expectation of privacy when using organisational systems. Monitoring is conducted for security, legal, and operational purposes.
+
+4. PROHIBITED ACTIVITIES
+The following are strictly prohibited:
+4.1 Accessing, creating, storing, or transmitting material that is illegal, obscene, offensive, discriminatory, or in violation of the organisation's Dignity at Work policy.
+4.2 Circumventing, disabling, or attempting to bypass any security control, including firewalls, content filtering, endpoint protection, or authentication mechanisms.
+4.3 Installing unauthorised software on organisational devices. Only software from the approved software catalogue may be installed.
+4.4 Sharing login credentials or allowing others to use your account.
+4.5 Connecting personal storage devices (USB drives, external HDDs) to organisational equipment without prior IT Security approval.
+4.6 Using organisational systems to conduct personal business or self-employed activities.
+4.7 Accessing the dark web or anonymous networks (e.g., Tor) from organisational systems.
+4.8 Downloading, installing, or using cryptocurrency mining software on any organisational system.
+4.9 Sending Confidential or above data to personal email accounts or unapproved cloud storage services.
+4.10 Using AI/LLM-based tools to process or submit Confidential or Top Secret data without prior CISO approval.
+
+5. EMAIL AND COMMUNICATION
+5.1 Employees must not open email attachments or click hyperlinks from unknown or unexpected senders without verification.
+5.2 Sensitive data must not be transmitted via email unless the message and attachment are encrypted per ISP-005.
+5.3 Mass email communications to external recipients must be approved by the Communications team.
+
+6. SOCIAL MEDIA
+6.1 Employees must not share organisational Confidential or Internal information on social media platforms.
+6.2 Employees must clearly identify that views expressed on personal social media are their own and do not represent the organisation.
+
+7. CONSEQUENCES OF VIOLATION
+Violations of this policy will be dealt with under the HR Disciplinary Policy (ISP-017). Serious violations may result in immediate suspension of access pending investigation and potential termination of employment.
+
+8. ACKNOWLEDGEMENT
+All users must acknowledge this policy annually via the Learning Management System. First acknowledgement must be completed before system access is granted.
+
+Approved by: CISO | Head of HR | Legal Counsel | Next Review: 31 December 2024

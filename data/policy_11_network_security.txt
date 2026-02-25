@@ -1,0 +1,40 @@
+NETWORK SECURITY POLICY
+Document ID: ISP-011 | Version: 2.4 | Classification: Internal
+Effective Date: 01 February 2024 | Review Date: 31 January 2025
+
+1. PURPOSE
+This policy establishes requirements for securing organisational network infrastructure and controlling network access, consistent with ISO/IEC 27001:2022 Annex A Controls 8.20 through 8.23.
+
+2. NETWORK ARCHITECTURE
+2.1 The organisation's network is segmented into the following zones: Internet DMZ, Corporate LAN, Secure Data Network, Guest/BYOD Network, and OT/ICS Network (where applicable).
+2.2 Network segmentation must be enforced using firewalls or equivalent security controls. Direct communication between network zones is prohibited unless explicitly permitted by an approved firewall rule.
+2.3 Inter-zone traffic must be inspected by a next-generation firewall (NGFW) capable of application-layer filtering and intrusion detection/prevention.
+
+3. FIREWALL MANAGEMENT
+3.1 Firewall rule changes must follow the Change Management process (ISP-016) and be approved by the Network Security team.
+3.2 A full review of all firewall rules must be conducted every 6 months. Any rule that has not been used in the preceding 90 days must be reviewed for removal.
+3.3 Default-deny rules must be applied at all network boundaries; only explicitly permitted traffic is allowed.
+3.4 Rule sets must be documented with: business justification, date of creation, owner, and expiry date.
+
+4. WIRELESS SECURITY
+4.1 All corporate wireless networks must use WPA3-Enterprise with 802.1X authentication.
+4.2 WPA2-Personal (pre-shared key) is permitted only for the dedicated Guest network and must use a separate VLAN with no access to internal networks.
+4.3 A wireless survey must be conducted at least annually to identify rogue access points.
+4.4 Guest wireless networks must undergo captive portal authentication and must have a bandwidth throttle of maximum 10 Mbps per user.
+
+5. REMOTE ACCESS
+5.1 All remote access to corporate resources must be via the approved VPN with MFA, as defined in ISP-001.
+5.2 Split tunnelling via VPN is prohibited for access to Confidential or above resources.
+5.3 Remote Desktop Protocol (RDP) must not be exposed directly to the internet. Access must be via VPN or a dedicated jump server.
+
+6. DNS SECURITY
+6.1 Recursive DNS queries from internal networks must be directed to the organisation's internal DNS resolvers only.
+6.2 DNS filtering must be implemented to block access to known malicious domains.
+6.3 DNSSEC must be enabled on all externally hosted domains.
+
+7. NETWORK MONITORING
+7.1 All network traffic must be monitored using a centralised Security Information and Event Management (SIEM) system.
+7.2 Intrusion Detection Systems (IDS) or Intrusion Prevention Systems (IPS) must be deployed at all internet boundaries.
+7.3 NetFlow or equivalent flow analysis data must be collected and retained for 30 days.
+
+Approved by: Head of Network Engineering | CISO | Next Review: 31 January 2025

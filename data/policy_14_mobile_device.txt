@@ -1,0 +1,38 @@
+MOBILE DEVICE AND REMOTE WORKING POLICY
+Document ID: ISP-014 | Version: 2.6 | Classification: Internal
+Effective Date: 01 April 2024 | Review Date: 31 March 2025
+
+1. PURPOSE
+This policy defines requirements for the use of mobile devices and remote working arrangements involving access to organisational information, in accordance with ISO/IEC 27001:2022 Annex A Controls 6.7 and 8.1.
+
+2. APPROVED DEVICES
+2.1 Organisation-issued devices are the preferred method for accessing organisational systems. All organisation-issued mobile devices must be enrolled in the Mobile Device Management (MDM) platform before use.
+2.2 Personally-owned devices (BYOD) may be permitted for access to low-risk, Internal-classified systems with prior written approval from the line manager and IT Security team. BYOD access to Confidential or above systems is prohibited.
+2.3 All devices (corporate and BYOD) must meet the following minimum requirements:
+   - Operating system within 2 major versions of the current release
+   - Full-disk encryption enabled
+   - Screen lock with PIN/password of minimum 6 digits, or biometric equivalent
+   - Remote wipe capability enabled
+   - Antivirus/EDR agent installed (corporate devices only)
+
+3. MDM REQUIREMENTS
+3.1 Corporate mobile devices must remain enrolled in MDM at all times. Deliberate unenrolment is a policy violation.
+3.2 MDM must enforce: automatic OS update installation, application whitelist enforcement, certificate-based email configuration, and remote lock/wipe capability.
+3.3 Jailbroken or rooted devices are prohibited from accessing any organisational system, regardless of classification. MDM must detect and automatically block jailbroken/rooted devices.
+
+4. REMOTE WORKING SECURITY
+4.1 Employees working remotely must comply with all other applicable security policies, including ISP-001 (Access Control) and ISP-011 (Network Security).
+4.2 Sensitive work (involving Confidential or above data) must not be conducted in public areas where screens or conversations could be observed or overheard.
+4.3 Public Wi-Fi networks must not be used for accessing organisational systems without first connecting to the approved VPN.
+4.4 Portable printers and home printers must not be used to print Confidential or above documents. Printing of such documents is only permitted using secure, organisation-controlled printers.
+
+5. LOST AND STOLEN DEVICES
+5.1 Lost or stolen devices must be reported to the IT helpdesk and Information Security team within 1 hour of discovery.
+5.2 The IT Security team must initiate a remote wipe within 2 hours of a confirmed device loss, subject to the individual's consent where a BYOD device is involved.
+5.3 Incidents involving corporate devices must be formally logged as security incidents per ISP-002.
+
+6. DEVICE DISPOSAL
+6.1 Corporate mobile devices being decommissioned must be returned to IT with data wiped using the MDM factory reset command.
+6.2 BYOD devices being unenrolled must be processed through MDM selective wipe to remove only organisational data.
+
+Approved by: CISO | Head of IT | Next Review: 31 March 2025

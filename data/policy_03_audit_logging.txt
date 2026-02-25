@@ -1,0 +1,49 @@
+AUDIT LOGGING AND MONITORING POLICY
+Document ID: ISP-003 | Version: 2.1 | Classification: Internal
+Effective Date: 01 March 2024 | Review Date: 28 February 2025
+
+1. PURPOSE
+This policy establishes requirements for the collection, protection, and retention of audit logs across all information systems, in accordance with ISO/IEC 27001:2022 Annex A Control 8.15 and 8.16.
+
+2. SCOPE
+This policy applies to all systems owned, operated, or managed by the organisation including on-premises infrastructure, cloud services, third-party hosted applications, and operational technology (OT) systems.
+
+3. LOG COLLECTION REQUIREMENTS
+3.1 All information systems must generate audit logs capturing the following minimum event types:
+   - User authentication events (successful and failed logins)
+   - Privilege escalation and use of administrative accounts
+   - Changes to user accounts, roles, and permissions
+   - Access to files and systems classified as Confidential or above
+   - System start-up, shutdown, and restart events
+   - Changes to security policies and configurations
+   - Network connection attempts (accepted and rejected)
+   - Application errors and exceptions
+
+3.2 Logs must include the following minimum data fields: timestamp (UTC), source IP address, user identity, action performed, affected resource, and outcome (success/failure).
+3.3 All system clocks must be synchronised to an approved NTP source to ensure log timestamp accuracy. Clock drift of more than 1 second must trigger an automated alert.
+
+4. LOG RETENTION REQUIREMENTS
+4.1 Audit logs must be retained for a minimum of 12 months in an online, queryable format to support active investigations and compliance monitoring.
+4.2 Audit logs must be archived for a total retention period of 36 months (3 years) from the date of creation. This applies to all log types without exception.
+4.3 Logs related to an active security incident, legal hold, or regulatory investigation must be retained indefinitely until the matter is formally closed.
+4.4 After the retention period expires, logs must be securely deleted using an approved data destruction method documented in the Data Retention and Disposal Policy (ISP-015).
+
+5. LOG PROTECTION
+5.1 Audit logs must be stored in a dedicated, centralised log management system (SIEM) that is logically and physically separate from the systems being logged.
+5.2 Logs must be protected against unauthorised modification, deletion, or tampering. Cryptographic hashing (minimum SHA-256) must be applied to log batches at intervals not exceeding 15 minutes.
+5.3 Write access to log storage must be restricted to automated log ingestion processes only. No user, including administrators, should have the ability to delete or modify logs in the production log store.
+5.4 Log storage systems must have sufficient capacity to retain all required logs without interruption. Capacity must be reviewed quarterly and storage must be increased before utilisation exceeds 80%.
+
+6. LOG MONITORING AND ALERTING
+6.1 The Security Operations Centre (SOC) is responsible for continuous monitoring of audit logs during business hours, with automated alerting in place for critical events at all times (24/7).
+6.2 Automated alerts must be configured for the following events: 5 or more failed login attempts within 10 minutes from a single source, any use of a terminated user account, access to systems by accounts outside of permitted working hours, and any attempt to disable or clear audit logs.
+6.3 All alerts must be triaged within 30 minutes of generation during business hours and within 2 hours outside of business hours.
+
+7. ACCESS TO LOGS
+7.1 Access to audit logs must be restricted on a need-to-know basis. A formal request and approval process must be followed for all log access requests outside of the SOC team.
+7.2 Access to logs must itself be logged and subject to review.
+
+8. COMPLIANCE
+Compliance with this policy will be assessed through quarterly internal audits and annual external assessments.
+
+Approved by: CISO | Next Review: 28 February 2025

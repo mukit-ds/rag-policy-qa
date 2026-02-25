@@ -1,0 +1,45 @@
+ACCESS CONTROL POLICY
+Document ID: ISP-001 | Version: 3.2 | Classification: Internal
+Effective Date: 01 January 2024 | Review Date: 31 December 2024
+
+1. PURPOSE
+This policy establishes requirements for controlling access to information systems and data assets in accordance with ISO/IEC 27001:2022, Annex A Control 5.15 through 5.18.
+
+2. SCOPE
+This policy applies to all employees, contractors, third-party vendors, and any individual granted access to organisational information systems, networks, or physical facilities.
+
+3. ACCESS CONTROL PRINCIPLES
+3.1 Least Privilege: Users shall be granted the minimum level of access rights necessary to perform their job functions. No user shall be granted administrative or elevated privileges without explicit written approval from their line manager and the Information Security team.
+3.2 Need-to-Know: Access to classified, confidential, or sensitive data shall be restricted to individuals who require that information to fulfil their assigned duties.
+3.3 Segregation of Duties: Critical functions shall be divided among multiple individuals to reduce the risk of error or fraud. No single individual shall have end-to-end control over a critical process.
+
+4. ACCESS REVIEW REQUIREMENTS
+4.1 Access rights must be formally reviewed at least every 90 days for privileged accounts and every 180 days for standard user accounts.
+4.2 Line managers are responsible for conducting and documenting access reviews for their direct reports.
+4.3 Access reviews must be completed using the approved Access Review Form (ARF-002) and submitted to the Information Security team within 5 business days of the review period end date.
+4.4 Any access identified as excessive, inappropriate, or no longer required must be revoked within 24 hours of identification.
+
+5. USER REGISTRATION AND DE-REGISTRATION
+5.1 A formal user registration process must be followed for all new accounts. The process requires: written authorisation from the line manager, confirmation of job role from HR, and completion of security awareness training before account activation.
+5.2 Upon termination of employment or contract, all access rights must be revoked within 4 hours of the effective termination date. HR is responsible for notifying the IT department immediately upon confirmation of termination.
+5.3 During extended leave (greater than 30 consecutive days), accounts shall be suspended until the user returns.
+
+6. PASSWORD AND AUTHENTICATION STANDARDS
+6.1 All user accounts must use a minimum password length of 14 characters.
+6.2 Passwords must contain at least one uppercase letter, one lowercase letter, one number, and one special character.
+6.3 Passwords must not be reused within the previous 12 password cycles.
+6.4 Multi-factor authentication (MFA) is mandatory for all remote access, all privileged accounts, and all access to systems classified as Confidential or above.
+6.5 Passwords must be changed every 90 days for standard accounts and every 30 days for privileged accounts.
+
+7. REMOTE ACCESS
+7.1 Remote access to organisational systems is only permitted via approved VPN solutions using certificate-based authentication and MFA.
+7.2 Remote access sessions must automatically terminate after 15 minutes of inactivity.
+7.3 The use of personal devices for remote access requires prior approval and enrolment in the Mobile Device Management (MDM) system.
+
+8. EXCEPTIONS
+Exceptions to this policy require written approval from the Chief Information Security Officer (CISO) and must be reviewed every 30 days.
+
+9. VIOLATIONS
+Violations of this policy may result in disciplinary action up to and including termination of employment or contract, and may be referred to law enforcement authorities where applicable.
+
+Approved by: CISO | Next Review: 31 December 2024

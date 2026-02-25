@@ -1,0 +1,44 @@
+INFORMATION SECURITY INCIDENT RESPONSE POLICY
+Document ID: ISP-002 | Version: 2.5 | Classification: Internal
+Effective Date: 15 February 2024 | Review Date: 14 February 2025
+
+1. PURPOSE
+This policy defines the organisation's approach to identifying, reporting, managing, and recovering from information security incidents, in alignment with ISO/IEC 27001:2022 Annex A Control 5.24 through 5.28.
+
+2. DEFINITIONS
+2.1 Security Incident: Any event that has or could adversely affect the confidentiality, integrity, or availability of information assets.
+2.2 Security Event: An identified occurrence of a system, service, or network state indicating a possible breach of security policy.
+2.3 Major Incident: Any incident that results in significant business disruption, data breach affecting more than 100 individuals, or financial loss exceeding £50,000.
+
+3. INCIDENT CLASSIFICATION
+Incidents are classified into four severity levels:
+- P1 (Critical): Active breach, ransomware, or complete system outage. Response must begin within 15 minutes of detection.
+- P2 (High): Suspected breach, partial outage, or loss of sensitive data. Response must begin within 1 hour of detection.
+- P3 (Medium): Policy violation, attempted intrusion, or degraded service. Response must begin within 4 hours of detection.
+- P4 (Low): Minor policy deviation or isolated suspicious activity. Response must begin within 24 hours of detection.
+
+4. ROLES AND RESPONSIBILITIES
+4.1 Incident Commander: The Chief Information Security Officer (CISO) or nominated deputy is responsible for declaring a security incident, activating the Incident Response Team (IRT), and serving as primary decision-maker throughout the incident lifecycle.
+4.2 Incident Response Team (IRT): Comprises the Security Operations Centre (SOC) lead, IT Infrastructure manager, Legal counsel, Communications officer, and relevant business unit representatives.
+4.3 All Employees: Any employee who suspects or identifies a security incident must report it immediately to the Security Operations Centre via the dedicated incident hotline (+44 800 SECTEAM) or by email to incidents@organisation.com. Employees must not attempt to investigate or remediate incidents independently.
+
+5. INCIDENT RESPONSE PHASES
+5.1 Detection and Reporting: Incidents may be detected through automated monitoring alerts, employee reports, or third-party notifications. All incidents must be logged in the Incident Management System (IMS) within 30 minutes of initial detection.
+5.2 Triage and Classification: The SOC is responsible for initial triage. Severity classification must be assigned within 30 minutes of incident logging for P1/P2 and within 2 hours for P3/P4.
+5.3 Containment: Short-term containment actions (e.g., isolating affected systems) must be completed within 2 hours for P1 incidents. Long-term containment strategies must be documented and approved by the Incident Commander before implementation.
+5.4 Eradication: Root cause analysis must be completed and documented before systems are returned to production. All evidence must be preserved using forensically sound procedures.
+5.5 Recovery: Systems may only be returned to production following written sign-off from the CISO and relevant business unit owner.
+5.6 Post-Incident Review: A formal post-incident review (PIR) must be conducted within 10 business days of incident closure for all P1 and P2 incidents. The PIR report must be presented to the Information Security Steering Committee.
+
+6. REGULATORY NOTIFICATION
+6.1 Where a personal data breach has occurred, the Data Protection Officer (DPO) must be notified within 1 hour of classification.
+6.2 Notification to the relevant supervisory authority (e.g., ICO) must occur within 72 hours of becoming aware of the breach, in accordance with UK GDPR Article 33.
+6.3 Where notification to affected data subjects is required, this must occur without undue delay, typically within 72 hours of the decision to notify.
+
+7. EVIDENCE PRESERVATION
+All digital evidence must be collected and preserved in accordance with the Digital Forensics Evidence Handling Procedure (DFEHP-001) to ensure admissibility in legal or regulatory proceedings.
+
+8. TESTING
+The incident response plan must be tested at least annually through a tabletop exercise, with findings documented and remediation actions tracked.
+
+Approved by: CISO | Next Review: 14 February 2025

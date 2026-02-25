@@ -1,0 +1,40 @@
+PHYSICAL AND ENVIRONMENTAL SECURITY POLICY
+Document ID: ISP-008 | Version: 2.0 | Classification: Internal
+Effective Date: 01 January 2024 | Review Date: 31 December 2024
+
+1. PURPOSE
+This policy establishes requirements for protecting organisational information assets and physical premises from unauthorised access, damage, and interference, in accordance with ISO/IEC 27001:2022 Annex A Controls 7.1 through 7.14.
+
+2. SECURE AREAS
+2.1 The organisation operates three security perimeter levels:
+   - Zone A (Public): Reception, client meeting rooms, public-facing areas.
+   - Zone B (Internal): General office space accessible to all employees.
+   - Zone C (Restricted): Server rooms, network equipment rooms, HR offices, and financial data processing areas. Requires individual access card authorisation.
+
+2.2 All server rooms and data centres are classified as Zone C. Entry requires: valid access card with biometric verification, and must be logged in the Physical Access Control System (PACS).
+2.3 Visitor access to Zone C areas is prohibited except for maintenance purposes. Visitors must be accompanied at all times by an authorised employee and access must be recorded in the Visitor Log.
+
+3. PHYSICAL ACCESS CONTROLS
+3.1 Access cards must be issued individually and must not be shared under any circumstances.
+3.2 Lost or stolen access cards must be reported within 1 hour and remotely deactivated within 2 hours.
+3.3 Physical access rights must be reviewed every 90 days. Access to Zone C must be reviewed every 30 days.
+3.4 All physical access to Zone C areas must be recorded and logs retained for 12 months.
+
+4. EQUIPMENT SECURITY
+4.1 Server equipment must be physically secured in locked racks or cages.
+4.2 All equipment must be inventoried and labelled with a unique asset tag.
+4.3 Equipment must not be removed from secure areas without completion of a formal Equipment Removal Authorisation form.
+4.4 Unattended workstations must be locked (minimum screen lock timeout: 5 minutes).
+4.5 A clear desk policy applies to all Zone B and Zone C areas. No sensitive documents may be left unattended on desks overnight.
+
+5. ENVIRONMENTAL CONTROLS
+5.1 Server rooms must maintain temperature between 18°C and 27°C and humidity between 40% and 60%.
+5.2 Uninterruptible Power Supplies (UPS) must be installed for all critical server and network equipment. UPS batteries must be tested quarterly.
+5.3 Fire suppression systems must be tested annually. Fire extinguishers must be inspected every 6 months.
+5.4 CCTV coverage must be maintained for all Zone C entry/exit points and server rooms. Recordings must be retained for 90 days.
+
+6. DISPOSAL OF EQUIPMENT
+6.1 Hard drives and storage media from decommissioned equipment must be sanitised using an approved method (degaussing, physical destruction, or certified secure erasure) before disposal.
+6.2 A Certificate of Destruction must be obtained and retained for all equipment disposal.
+
+Approved by: Head of Facilities | CISO | Next Review: 31 December 2024

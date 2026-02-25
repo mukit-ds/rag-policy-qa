@@ -1,0 +1,40 @@
+SECURITY AWARENESS AND TRAINING POLICY
+Document ID: ISP-016 | Version: 2.1 | Classification: Internal
+Effective Date: 01 February 2024 | Review Date: 31 January 2025
+
+1. PURPOSE
+This policy establishes requirements for security awareness education and training for all personnel, ensuring that individuals understand their responsibilities under ISO/IEC 27001:2022 Annex A Control 6.3.
+
+2. MANDATORY TRAINING REQUIREMENTS
+2.1 All employees, contractors, and temporary staff must complete the following training:
+   - General Security Awareness Training (GSAT): Annually, within 30 days of hire for new starters.
+   - Data Protection and UK GDPR Awareness: Annually.
+   - Phishing Awareness Training: Upon hire, then following any phishing simulation failure.
+   - Acceptable Use Policy (AUP) acknowledgement: Annually and upon any significant policy update.
+
+2.2 The following roles have additional mandatory training requirements:
+   - IT and Security staff: Minimum 16 hours of technical security training per year.
+   - Developers: Secure coding training (OWASP Top 10 minimum) annually.
+   - Finance staff handling payment data: PCI DSS awareness training annually.
+   - Managers and supervisors: Privacy and data protection management training biennially.
+
+3. PHISHING SIMULATION PROGRAMME
+3.1 Simulated phishing exercises must be conducted at minimum quarterly for all staff.
+3.2 Staff who fail (click a link, enter credentials, or open an attachment in a simulated phishing exercise) must complete remedial phishing awareness training within 5 business days.
+3.3 Repeat phishing failures (3 or more in a 12-month period) must be escalated to the line manager and may result in additional disciplinary review.
+3.4 Phishing simulation results must be reported to the Information Security Steering Committee quarterly, including click rate, credential submission rate, and report rate.
+
+4. TRAINING DELIVERY AND RECORDS
+4.1 Training must be delivered via the organisation's Learning Management System (LMS) to ensure completion tracking and audit trail.
+4.2 Completion records must be retained for the duration of employment plus 3 years.
+4.3 Non-completion of mandatory training within required timeframes must be escalated to the line manager after 5 days and to HR after 10 days.
+
+5. NEW JOINER INDUCTION
+5.1 All security awareness modules must be completed within the first 30 days of employment.
+5.2 New joiners must not be granted access to systems classified above Internal until General Security Awareness Training and the AUP acknowledgement have been completed.
+
+6. EFFECTIVENESS MEASUREMENT
+6.1 Training effectiveness is measured through post-training assessments (minimum pass score: 80%), phishing simulation click rates, and security incident metrics attributable to human error.
+6.2 Annual reporting on training effectiveness must be presented to the Information Security Steering Committee.
+
+Approved by: CISO | Head of HR | Next Review: 31 January 2025

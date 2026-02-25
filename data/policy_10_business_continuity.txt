@@ -1,0 +1,40 @@
+BUSINESS CONTINUITY AND DISASTER RECOVERY POLICY
+Document ID: ISP-010 | Version: 3.1 | Classification: Internal
+Effective Date: 01 January 2024 | Review Date: 31 December 2024
+
+1. PURPOSE
+This policy ensures the organisation can maintain critical operations and recover IT systems within acceptable timeframes following a disruptive event, in accordance with ISO/IEC 27001:2022 Annex A Control 5.29 and 5.30.
+
+2. RECOVERY OBJECTIVES
+2.1 Recovery Time Objective (RTO): The maximum acceptable time to restore a system or service after an outage.
+   - Tier 1 (Mission Critical): RTO of 4 hours. Applies to core banking systems, payment processing, and customer-facing portals.
+   - Tier 2 (Business Critical): RTO of 24 hours. Applies to internal operational systems and communication platforms.
+   - Tier 3 (Important): RTO of 72 hours. Applies to reporting, analytics, and non-time-critical systems.
+
+2.2 Recovery Point Objective (RPO): The maximum acceptable data loss measured in time.
+   - Tier 1: RPO of 1 hour. Continuous replication or transaction log shipping is required.
+   - Tier 2: RPO of 4 hours. Backup frequency must support this objective.
+   - Tier 3: RPO of 24 hours. Daily backups are the minimum requirement.
+
+3. BACKUP REQUIREMENTS
+3.1 All production data must be backed up in accordance with the RPO for its assigned tier.
+3.2 Backups must follow the 3-2-1 rule: 3 copies of data, on 2 different media types, with 1 copy stored off-site or in a geographically separate cloud region.
+3.3 Backup media must be encrypted as per ISP-005 and IST-007.
+3.4 Full backup restoration tests must be performed quarterly. Test results, including restoration time achieved, must be documented and compared against RTO/RPO targets.
+3.5 Backup failures must be investigated and resolved within 24 hours. Repeated backup failures (more than 3 consecutive days) must be escalated to the CISO.
+
+4. BUSINESS CONTINUITY PLANS
+4.1 Business Continuity Plans (BCPs) must be maintained for all business-critical processes and must be reviewed and updated at least annually.
+4.2 BCPs must identify: critical activities and dependencies, minimum staffing requirements, alternate work locations, and escalation contacts.
+4.3 BCPs must be tested through a live exercise at least annually. Tabletop exercises are acceptable; real-world failover tests are preferred for Tier 1 systems.
+
+5. DISASTER RECOVERY SITE
+5.1 The organisation maintains a warm standby disaster recovery (DR) site at a separate geographic location.
+5.2 Tier 1 systems must be capable of failing over to the DR site within the RTO.
+5.3 DR site infrastructure must be patched and maintained to the same standard as the primary site.
+
+6. COMMUNICATION DURING AN INCIDENT
+6.1 The Crisis Communications Plan (CCP-001) defines internal and external communication procedures during a major incident.
+6.2 Status updates to senior leadership must be provided at least every 2 hours during a P1/P2 incident.
+
+Approved by: CISO | COO | Next Review: 31 December 2024

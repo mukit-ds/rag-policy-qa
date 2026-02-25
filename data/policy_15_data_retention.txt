@@ -1,0 +1,53 @@
+DATA RETENTION AND DISPOSAL POLICY
+Document ID: ISP-015 | Version: 2.0 | Classification: Internal
+Effective Date: 01 January 2024 | Review Date: 31 December 2024
+
+1. PURPOSE
+This policy defines mandatory retention periods for organisational data categories and establishes requirements for the secure disposal of data when retention periods expire, in accordance with ISO/IEC 27001:2022 Annex A Controls 8.10 and applicable legal/regulatory requirements.
+
+2. DATA RETENTION SCHEDULE
+2.1 The following retention periods apply from the date of last activity or the end of the relevant period, unless a legal hold is in place:
+
+Financial and Accounting Records:
+- Annual financial statements: 10 years
+- VAT records and invoices: 6 years
+- Payroll records: 6 years from end of tax year
+- Expense claims: 6 years
+
+Human Resources Records:
+- Employee personal files (active employees): Duration of employment + 7 years
+- Recruitment records (unsuccessful candidates): 12 months from rejection
+- Training records: Duration of employment + 5 years
+- Disciplinary records: 5 years from date of incident
+
+Legal and Contractual:
+- Signed contracts: 7 years from expiry or termination
+- Litigation-related documents: Until matter closed + 7 years
+- Board minutes and resolutions: Permanent retention
+
+Information Security:
+- Security incident records: 5 years from closure
+- Access logs: 12 months online, 36 months archived
+- Change management records: 3 years
+- Risk assessments: 5 years or until next review
+
+3. LEGAL HOLDS
+3.1 A legal hold suspends normal retention and disposal schedules for data relevant to active or anticipated litigation, regulatory investigation, or audit.
+3.2 Legal holds must be issued in writing by the Head of Legal and distributed to all custodians of relevant data.
+3.3 Data subject to a legal hold must not be altered, deleted, or moved without written authorisation from the Head of Legal.
+
+4. SECURE DISPOSAL
+4.1 All data must be disposed of securely when retention periods expire or data is no longer required.
+4.2 Digital data disposal methods (approved):
+   - Software overwrite: DoD 5220.22-M standard (7-pass) or equivalent; certificate of erasure required.
+   - Degaussing: Must use CESG/NCSC-approved degausser for media containing Top Secret data.
+   - Physical destruction: Shredding to particles of 2mm or less; must be performed by a certified destruction company with witnessed destruction or video evidence.
+4.3 Paper disposal: All paper documents containing Internal or above classification must be shredded in an approved cross-cut shredder or placed in a secure shredding bin. Documents must not be placed in general waste or recycling.
+
+5. CERTIFICATES OF DESTRUCTION
+5.1 A Certificate of Destruction must be obtained and retained for 5 years for all disposal of Confidential or above data, regardless of media type.
+
+6. PERSONAL DATA
+6.1 Personal data must not be retained longer than necessary for the purpose for which it was collected, in compliance with UK GDPR Article 5(1)(e). The retention periods in Section 2 establish the maximum permitted retention for each category.
+
+Approved by: CISO | Data Protection Officer | Head of Legal | Next Review: 31 December 2024

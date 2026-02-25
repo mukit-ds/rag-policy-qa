@@ -1,0 +1,38 @@
+HUMAN RESOURCES SECURITY POLICY
+Document ID: ISP-017 | Version: 1.8 | Classification: Internal
+Effective Date: 01 January 2024 | Review Date: 31 December 2024
+
+1. PURPOSE
+This policy defines information security responsibilities throughout the employee lifecycle — from pre-employment screening through to termination — in accordance with ISO/IEC 27001:2022 Annex A Controls 6.1 through 6.5.
+
+2. PRE-EMPLOYMENT SCREENING
+2.1 All candidates for employment must undergo background screening before an offer is confirmed. Screening must be performed by an approved third-party screening provider.
+2.2 Mandatory screening elements:
+   - Identity verification
+   - Right to work check
+   - Criminal record check (DBS/equivalent)
+   - Employment history verification (minimum 5 years)
+   - Reference checks (minimum 2 professional references)
+2.3 Enhanced screening (additionally including credit check and directorship check) is required for roles with access to financial systems, privileged IT access, or Confidential/Top Secret data.
+2.4 Re-screening must be conducted every 3 years for all staff in enhanced screening roles.
+
+3. EMPLOYMENT CONDITIONS
+3.1 All employees must sign the following documents before commencing employment: employment contract, Acceptable Use Policy (AUP), Non-Disclosure Agreement (NDA), and the Information Security Responsibilities acknowledgement.
+3.2 Information security responsibilities must be described in job descriptions for all roles.
+
+4. DISCIPLINARY PROCESS
+4.1 Information security policy violations are subject to the organisation's disciplinary process.
+4.2 Severity of disciplinary action reflects the severity and intent of the violation:
+   - Minor violations (accidental, low impact): Verbal warning and retraining.
+   - Significant violations (negligence, moderate impact): Written warning and mandatory retraining.
+   - Serious violations (intentional, high impact, or data breach): Termination, and potential referral to law enforcement.
+4.3 Suspected malicious or criminal activity must be referred to the Information Security team and Legal immediately, without confronting the suspect directly.
+
+5. TERMINATION AND CHANGE OF ROLE
+5.1 Upon notice of termination (voluntary or involuntary), the HR team must immediately notify IT, Information Security, Facilities, and the relevant line manager.
+5.2 For involuntary terminations, access to all systems must be suspended at the time the employee is notified.
+5.3 For voluntary terminations, access must be suspended no later than the end of the last working day.
+5.4 All organisation-issued equipment (devices, tokens, access cards) must be returned on or before the last working day. A completed Return of Assets form must be signed.
+5.5 Upon a significant change of role (promotion, department transfer), access rights must be reviewed within 10 business days to ensure alignment with the new role.
+
+Approved by: CISO | Head of HR | Next Review: 31 December 2024

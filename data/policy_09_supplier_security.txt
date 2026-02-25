@@ -1,0 +1,39 @@
+SUPPLIER AND THIRD-PARTY SECURITY POLICY
+Document ID: ISP-009 | Version: 2.2 | Classification: Internal
+Effective Date: 01 March 2024 | Review Date: 28 February 2025
+
+1. PURPOSE
+This policy defines requirements for managing information security risks arising from relationships with external suppliers, partners, and third-party service providers, in accordance with ISO/IEC 27001:2022 Annex A Controls 5.19 through 5.22.
+
+2. SUPPLIER CLASSIFICATION
+All suppliers with access to organisational information assets are classified into three tiers based on risk:
+- Tier 1 (Critical): Suppliers processing or storing Confidential/Top Secret data, or providing services critical to business continuity. Examples: cloud hosting providers, managed security service providers (MSSPs).
+- Tier 2 (Significant): Suppliers with access to Internal data or providing services that, if disrupted, would cause notable business impact.
+- Tier 3 (Standard): Low-risk suppliers with no access to sensitive data and minimal operational dependency.
+
+3. PRE-ENGAGEMENT ASSESSMENT
+3.1 All Tier 1 and Tier 2 suppliers must complete the Supplier Security Questionnaire (SSQ) before contract execution.
+3.2 Tier 1 suppliers must provide evidence of ISO 27001 certification or equivalent (SOC 2 Type II, Cyber Essentials Plus) as part of the assessment.
+3.3 The Information Security team must review and approve all Tier 1 supplier assessments before procurement can proceed.
+3.4 On-site security assessments must be conducted for all new Tier 1 suppliers prior to contract award.
+
+4. CONTRACTUAL REQUIREMENTS
+4.1 All supplier contracts involving access to organisational data must include:
+   - Data processing terms aligned with UK GDPR (where applicable)
+   - Minimum information security standards clause referencing ISO 27001 or equivalent
+   - Right to audit clause allowing the organisation to conduct security assessments
+   - Incident notification obligation (supplier must notify within 4 hours of any suspected breach affecting organisational data)
+   - Data return and destruction requirements upon contract termination
+4.2 Sub-processor and sub-contracting arrangements must be explicitly approved by the organisation. Suppliers may not engage sub-contractors for data processing without prior written consent.
+
+5. ONGOING MONITORING
+5.1 Tier 1 suppliers must undergo formal security re-assessment every 12 months.
+5.2 Tier 2 suppliers must undergo security re-assessment every 24 months.
+5.3 Suppliers must provide updated security evidence (e.g., renewed certifications) within 30 days of their previous certification expiring.
+5.4 Performance against security SLAs and any security incidents involving the supplier must be tracked and reported quarterly.
+
+6. OFFBOARDING
+6.1 Upon contract termination, all organisational data held by the supplier must be returned or destroyed within 30 days, with written confirmation provided.
+6.2 All access rights granted to the supplier must be revoked within 24 hours of contract end.
+
+Approved by: CISO | Head of Procurement | Next Review: 28 February 2025

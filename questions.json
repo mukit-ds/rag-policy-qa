@@ -1,0 +1,37 @@
+[
+  {
+    "id": "Q1",
+    "question": "What is the maximum permitted period before access rights must be formally reviewed for standard user accounts?",
+    "expected_source": "policy_01_access_control.txt",
+    "key_fact": "180 days",
+    "grading_note": "Answer must cite 180 days for standard accounts (and may contrast with 90 days for privileged accounts). Source must reference policy_01."
+  },
+  {
+    "id": "Q2",
+    "question": "Who is responsible for declaring a security incident and activating the Incident Response Team?",
+    "expected_source": "policy_02_incident_response.txt",
+    "key_fact": "CISO or nominated deputy (Incident Commander)",
+    "grading_note": "Answer must identify the CISO or designated Incident Commander role. Source must reference policy_02."
+  },
+  {
+    "id": "Q3",
+    "question": "For how long must audit logs be retained in total, including the archived period?",
+    "expected_source": "policy_03_audit_logging.txt",
+    "key_fact": "36 months (3 years)",
+    "grading_note": "Answer must state 36 months or 3 years total. Must distinguish between 12 months online and 36 months total archived. Source must reference policy_03."
+  },
+  {
+    "id": "Q4",
+    "question": "What encryption standard is required for data at rest in production databases?",
+    "expected_source": "policy_07_data_encryption_at_rest.txt",
+    "key_fact": "AES-256 via Transparent Data Encryption (TDE)",
+    "grading_note": "Answer must state AES-256 and reference TDE. Source must reference policy_07."
+  },
+  {
+    "id": "Q5",
+    "question": "What is the SLA for remediating a Critical vulnerability on a Tier 1 production system?",
+    "expected_source": "policy_12_patch_sla.txt",
+    "key_fact": "24 hours",
+    "grading_note": "Answer must state 24 hours specifically for Critical/Tier 1. Source must reference policy_12."
+  }
+]

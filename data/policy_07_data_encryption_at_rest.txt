@@ -1,0 +1,43 @@
+DATA ENCRYPTION AT REST — TECHNICAL STANDARD
+Document ID: IST-007 | Version: 1.4 | Classification: Internal
+Effective Date: 01 May 2024 | Review Date: 30 April 2025
+
+1. PURPOSE
+This standard provides technical implementation requirements for encryption of data at rest across all organisational systems and storage environments, supplementing ISP-005.
+
+2. MANDATORY ENCRYPTION REQUIREMENTS
+2.1 The following data categories must be encrypted at rest without exception:
+   - All personal data as defined under UK GDPR
+   - Payment card data (subject to PCI DSS)
+   - Authentication credentials and cryptographic keys
+   - All data classified as CONFIDENTIAL or TOP SECRET under ISP-004
+   - Backup media, whether on-site or off-site
+
+2.2 The approved encryption standard for data at rest is AES-256 in an approved mode of operation. XTS mode is required for full-disk encryption. GCM mode is required for application-level encryption.
+
+3. DATABASE ENCRYPTION
+3.1 All production databases containing Confidential or above data must implement Transparent Data Encryption (TDE) using AES-256.
+3.2 Database encryption keys must be managed in the organisation's approved Key Management Service (KMS) and must not be stored on the same server as the encrypted database.
+3.3 Column-level encryption must additionally be applied to the following specific data types: national ID numbers, financial account numbers, health-related information, and biometric data.
+
+4. CLOUD STORAGE ENCRYPTION
+4.1 All data stored in cloud environments must be encrypted using customer-managed keys (CMK), not provider-managed keys (PMK), for data classified as CONFIDENTIAL or above.
+4.2 Key management must remain under organisational control; cloud providers must not have unilateral access to encryption keys.
+4.3 Cloud storage bucket/container access policies must be reviewed quarterly to ensure no public read access is permitted for any storage containing non-PUBLIC data.
+
+5. BACKUP ENCRYPTION
+5.1 All backup media must be encrypted before data is written to it. The encryption must be applied by the backup software, not the underlying storage.
+5.2 Backup encryption keys must be stored separately from the backup media itself. For off-site backups, encryption keys must be managed at the primary site.
+5.3 Encrypted backup restoration tests must be performed quarterly to verify that decryption and recovery are successful.
+
+6. ENDPOINT ENCRYPTION
+6.1 Full-disk encryption (FDE) is mandatory on all laptops, workstations, and mobile devices owned or managed by the organisation.
+6.2 BitLocker recovery keys for Windows devices must be escrowed to the organisation's Active Directory or Microsoft Entra ID automatically.
+6.3 Portable storage media (USB drives, external HDDs) must use hardware-encrypted devices from the approved hardware list. Unencrypted portable media is prohibited for use with Confidential or above data.
+
+7. KEY LIFECYCLE REQUIREMENTS
+7.1 Encryption keys for data at rest must be rotated at least every 24 months, or immediately upon suspected compromise.
+7.2 When an encryption key is rotated, all data encrypted under the previous key must be re-encrypted within 30 days.
+7.3 Decommissioned keys must be archived securely for a period matching the retention period of the data they protected.
+
+Approved by: Head of IT Architecture | CISO | Next Review: 30 April 2025

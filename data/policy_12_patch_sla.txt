@@ -1,0 +1,42 @@
+PATCH MANAGEMENT AND VULNERABILITY REMEDIATION SLA
+Document ID: ISP-012 | Version: 2.0 | Classification: Internal
+Effective Date: 15 January 2024 | Review Date: 14 January 2025
+
+1. PURPOSE
+This document defines the Service Level Agreements (SLAs) for patching and vulnerability remediation across all organisational IT systems, supplementing ISP-006.
+
+2. PATCH CLASSIFICATION AND SLA TABLE
+The following mandatory remediation SLAs apply based on the CVSS v3.1 score and system tier:
+
+| Severity   | CVSS Score | Production (Tier 1) | Production (Tier 2/3) | Non-Production |
+|------------|------------|---------------------|----------------------|----------------|
+| Critical   | 9.0 – 10.0 | 24 hours            | 48 hours             | 7 days         |
+| High       | 7.0 – 8.9  | 7 days              | 14 days              | 30 days        |
+| Medium     | 4.0 – 6.9  | 30 days             | 45 days              | 90 days        |
+| Low        | 0.1 – 3.9  | 90 days             | 120 days             | 180 days       |
+
+3. ZERO-DAY VULNERABILITIES
+3.1 Zero-day vulnerabilities (exploited in the wild with no available vendor patch) must be assessed for risk within 4 hours of identification.
+3.2 Compensating controls (e.g., WAF rule updates, temporary service suspension, network isolation) must be implemented within 8 hours for Tier 1 systems and within 24 hours for Tier 2/3 systems.
+3.3 Vendor patch must be applied within 24 hours of availability for Critical zero-days.
+
+4. EMERGENCY PATCHING PROCEDURE
+4.1 Emergency patch deployments must be requested via the Emergency Change Request (ECR) process.
+4.2 Emergency changes for security patches must receive verbal approval from the CISO or designated deputy before deployment to production.
+4.3 Post-implementation review must be completed within 3 business days.
+
+5. PATCH TESTING
+5.1 All patches must be tested in a designated test environment before production deployment.
+5.2 Testing exemption applies only to Critical patches where the CISO has provided written authorisation to deploy directly to production.
+5.3 Minimum testing period: 2 business days for Medium/Low patches; 4 hours for High patches; no minimum for Critical (where risk of delay is assessed to outweigh testing risk).
+
+6. COMPLIANCE MEASUREMENT
+6.1 Patch compliance is measured as: (systems patched within SLA / total systems requiring patching) x 100.
+6.2 Target compliance: 100% for Critical, 98% for High, 95% for Medium, 90% for Low.
+6.3 Systems failing SLA must be reported to the CISO immediately. An incident ticket must be raised and tracked to closure.
+6.4 Monthly patch compliance reports must be distributed to all IT team leads and reviewed in the monthly Security Governance meeting.
+
+7. EXCEPTIONS
+Patching exceptions must be logged in the Risk Register with: system name, vulnerability details, reason for exception, compensating controls, and risk acceptance date. Exceptions are valid for a maximum of 90 days before mandatory re-review.
+
+Approved by: CISO | Head of IT Operations | Next Review: 14 January 2025

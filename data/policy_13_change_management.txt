@@ -1,0 +1,39 @@
+CHANGE MANAGEMENT POLICY
+Document ID: ISP-013 | Version: 3.3 | Classification: Internal
+Effective Date: 01 January 2024 | Review Date: 31 December 2024
+
+1. PURPOSE
+This policy governs the process for requesting, reviewing, approving, implementing, and reviewing changes to information systems and IT infrastructure, in accordance with ISO/IEC 27001:2022 Annex A Control 8.32.
+
+2. CHANGE TYPES
+2.1 Standard Change: Pre-approved, low-risk, routine changes with a defined and tested implementation procedure. No Change Advisory Board (CAB) approval required. Examples: scheduled OS patch deployment, routine certificate renewal.
+2.2 Normal Change: Non-emergency changes requiring CAB review and approval. Must be submitted at least 5 business days before the planned implementation date for minor normal changes, and at least 10 business days for major changes.
+2.3 Emergency Change: Urgent changes needed to restore service or address a critical security vulnerability. Must be approved by the CISO or CTO before implementation. Full documentation must be completed retrospectively within 48 hours.
+
+3. CHANGE ADVISORY BOARD (CAB)
+3.1 The CAB meets weekly every Tuesday at 10:00 AM. Emergency CAB sessions may be convened within 2 hours when required.
+3.2 CAB membership: IT Director (Chair), CISO, Head of IT Operations, Head of Network Engineering, representative of the affected business unit, and a Service Delivery Manager.
+3.3 A quorum of 4 CAB members is required for change approval. At least one of the CISO or IT Director must be present or have delegated approval.
+
+4. CHANGE REQUEST REQUIREMENTS
+4.1 All change requests must be submitted via the ITSM tool (ServiceNow) and must include:
+   - Description of the change and business justification
+   - Risk assessment (impact and likelihood)
+   - Security impact assessment
+   - Rollback plan
+   - Testing evidence from non-production environment
+   - Scheduled implementation window
+   - Communication plan
+
+4.2 Changes to security configurations (firewall rules, access controls, encryption settings) require a mandatory security review sign-off from the Information Security team before CAB submission.
+
+5. CHANGE FREEZES
+5.1 Change freezes are implemented during periods of high business activity or risk. During a change freeze, only Emergency Changes are permitted.
+5.2 The annual change freeze schedule is published by the IT Director in Q4 of the preceding year.
+5.3 Year-end and month-end financial processing periods are automatically subject to a 72-hour change freeze window unless business-critical exceptions are approved by the COO and CISO jointly.
+
+6. POST-IMPLEMENTATION REVIEW
+6.1 All Major Normal Changes and Emergency Changes must undergo a Post-Implementation Review (PIR) within 5 business days of completion.
+6.2 Failed changes must be analysed for root cause, and lessons learned must be recorded and shared with relevant teams.
+
+Approved by: IT Director | CISO | Next Review: 31 December 2024

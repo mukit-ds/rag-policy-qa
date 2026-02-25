@@ -1,0 +1,40 @@
+INFORMATION SECURITY RISK MANAGEMENT POLICY
+Document ID: ISP-018 | Version: 2.5 | Classification: Internal
+Effective Date: 01 January 2024 | Review Date: 31 December 2024
+
+1. PURPOSE
+This policy establishes the framework for identifying, assessing, treating, and monitoring information security risks, as required by ISO/IEC 27001:2022 Clause 6.1.
+
+2. RISK ASSESSMENT FRAMEWORK
+2.1 The organisation adopts a qualitative risk assessment approach using a 5x5 risk matrix.
+2.2 Risk is calculated as: Risk = Likelihood x Impact.
+2.3 Scoring scales:
+   - Likelihood: 1 (Rare) to 5 (Almost Certain)
+   - Impact: 1 (Negligible) to 5 (Catastrophic)
+   - Risk Score = Likelihood x Impact (range 1–25)
+
+2.4 Risk appetite thresholds:
+   - Acceptable (1–6): Risk accepted with no immediate action required.
+   - Tolerable (7–12): Risk accepted with mitigating controls in place; review within 6 months.
+   - Unacceptable (13–25): Immediate treatment required; must be escalated to CISO within 5 business days.
+
+3. RISK TREATMENT OPTIONS
+3.1 Modify (Mitigate): Implement controls to reduce likelihood or impact to an acceptable level.
+3.2 Avoid: Discontinue the activity that introduces the risk.
+3.3 Transfer: Transfer the risk to a third party (e.g., through insurance or contractual liability).
+3.4 Accept: Accept the residual risk. Acceptance must be documented and approved by the appropriate risk owner. Risks scoring 13 or above may only be accepted by the CISO.
+
+4. RISK REGISTER
+4.1 A formal Risk Register must be maintained by the Information Security team.
+4.2 The Risk Register must be reviewed at minimum quarterly, and updated following: significant security incidents, major infrastructure changes, new regulatory requirements, or significant threat intelligence updates.
+4.3 Risk owners are responsible for updating the status of their assigned risks and implementing approved treatment actions within agreed timescales.
+
+5. STATEMENT OF APPLICABILITY
+5.1 The organisation's Statement of Applicability (SoA) documents the controls selected from ISO 27001:2022 Annex A, with justifications for inclusion or exclusion.
+5.2 The SoA must be reviewed annually and updated to reflect any changes to the organisation's risk landscape.
+
+6. RISK REPORTING
+6.1 A summary Risk Report must be presented to the Information Security Steering Committee quarterly.
+6.2 Risks scoring 20 or above (Critical) must be reported to the Board at least annually, or immediately if a new Critical risk is identified.
+
+Approved by: CISO | CRO | Next Review: 31 December 2024

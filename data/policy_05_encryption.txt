@@ -1,0 +1,45 @@
+ENCRYPTION AND CRYPTOGRAPHIC CONTROLS POLICY
+Document ID: ISP-005 | Version: 2.3 | Classification: Internal
+Effective Date: 01 April 2024 | Review Date: 31 March 2025
+
+1. PURPOSE
+This policy defines requirements for the use of cryptographic controls to protect information assets, in accordance with ISO/IEC 27001:2022 Annex A Control 8.24.
+
+2. APPROVED ENCRYPTION STANDARDS
+2.1 Data at Rest:
+   - Minimum standard: AES-256 in GCM or CBC mode with PKCS7 padding.
+   - Full-disk encryption is mandatory for all laptops, mobile devices, and portable storage media using BitLocker (Windows), FileVault (macOS), or LUKS (Linux).
+   - Database encryption must use Transparent Data Encryption (TDE) with AES-256 keys.
+
+2.2 Data in Transit:
+   - All network communications must use TLS 1.2 at minimum; TLS 1.3 is required for all new implementations from 1 January 2024.
+   - SSL 3.0, TLS 1.0, and TLS 1.1 are prohibited and must be disabled on all systems.
+   - SSH version 1 is prohibited. SSH version 2 is mandatory for all remote administration.
+   - Insecure protocols (HTTP, FTP, Telnet, SNMP v1/v2) must be disabled unless a specific, time-limited exception has been approved by the CISO.
+
+2.3 Hashing and Digital Signatures:
+   - MD5 and SHA-1 are prohibited for all security-sensitive functions.
+   - SHA-256 is the minimum approved hash function; SHA-384 or SHA-512 is required for digital certificates and code signing.
+   - RSA keys must be a minimum of 3072 bits; 4096 bits is recommended for new implementations.
+   - Elliptic Curve Cryptography (ECC) using NIST P-256 or higher is the preferred algorithm for new key generation.
+
+3. KEY MANAGEMENT
+3.1 Cryptographic keys must be generated using an approved, cryptographically secure random number generator (CSPRNG).
+3.2 Encryption keys used for Confidential data or above must be stored in a Hardware Security Module (HSM) or approved key management service (KMS).
+3.3 Symmetric key rotation must occur at least every 12 months, or immediately following any suspected key compromise.
+3.4 Asymmetric keys (certificates) used in production must not have a validity period exceeding 2 years. From 01 March 2026, maximum certificate validity is reduced to 1 year in line with industry standards.
+3.5 Key pairs used for encryption and digital signing must be different (key separation principle).
+3.6 Private keys must never be stored in plaintext, transmitted via email, or shared between individuals.
+
+4. CERTIFICATE MANAGEMENT
+4.1 Only certificates issued by approved Certificate Authorities (CAs) from the organisation's approved CA list may be used in production environments.
+4.2 Certificate expiry must be monitored. Automated alerts must be configured to trigger 60 days and 30 days before certificate expiry.
+4.3 Expired, revoked, or compromised certificates must be replaced within 24 hours of identification.
+
+5. PROHIBITED ALGORITHMS
+The following are prohibited in all new implementations and must be removed from existing systems within 6 months of this policy's effective date: DES, 3DES, RC4, MD5 (for security purposes), SHA-1 (for security purposes), Diffie-Hellman with groups smaller than 2048 bits.
+
+6. VPN AND SECURE TUNNELLING
+All VPN implementations must use IKEv2 or OpenVPN with AES-256-GCM encryption. PPTP is prohibited.
+
+Approved by: CISO | Head of IT Architecture | Next Review: 31 March 2025

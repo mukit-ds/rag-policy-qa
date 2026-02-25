@@ -1,0 +1,46 @@
+DATA CLASSIFICATION AND HANDLING POLICY
+Document ID: ISP-004 | Version: 4.0 | Classification: Internal
+Effective Date: 01 January 2024 | Review Date: 31 December 2024
+
+1. PURPOSE
+This policy establishes a framework for classifying organisational data assets and defines appropriate handling, storage, and transmission controls for each classification level, consistent with ISO/IEC 27001:2022 Annex A Control 5.12 through 5.14.
+
+2. CLASSIFICATION LEVELS
+The organisation uses four classification levels, in descending order of sensitivity:
+
+2.1 TOP SECRET
+Definition: Information whose unauthorised disclosure could cause exceptionally grave damage to the organisation, including compromise of national security interests, major financial loss exceeding £10 million, or irreversible reputational harm.
+Examples: Merger and acquisition details, board-level strategic plans, law enforcement cooperation data.
+Handling: Must be encrypted at rest (AES-256) and in transit (TLS 1.3 minimum). Physical copies must be stored in a locked safe. Access limited to named individuals on an approved list. No cloud storage permitted without CISO written approval.
+
+2.2 CONFIDENTIAL
+Definition: Information whose unauthorised disclosure could cause significant harm to the organisation or individuals, including data subject to legal or regulatory protection.
+Examples: Personal data, financial records, contractual agreements, security vulnerability reports, HR records.
+Handling: Must be encrypted at rest and in transit. Access controlled via role-based access control (RBAC). Must not be shared with external parties without a signed Non-Disclosure Agreement (NDA) and Data Sharing Agreement (DSA). Cloud storage permitted only in approved, organisation-controlled environments.
+
+2.3 INTERNAL
+Definition: Information intended for internal use that, if disclosed externally, could cause limited harm or competitive disadvantage.
+Examples: Internal procedures, project plans, meeting minutes, system documentation.
+Handling: Must not be shared with external parties unless required for business purposes. Basic access controls apply. Email transmission is permitted but must not be sent to personal email addresses.
+
+2.4 PUBLIC
+Definition: Information approved for public release with no restriction on distribution.
+Examples: Marketing materials, press releases, published annual reports, publicly available product documentation.
+Handling: No restrictions on transmission or storage beyond standard security hygiene.
+
+3. CLASSIFICATION RESPONSIBILITIES
+3.1 Data Owners are responsible for assigning and maintaining the classification of data assets they own.
+3.2 Data is classified at the point of creation. If classification is unclear, the creator must apply CONFIDENTIAL as the default until formal classification is completed.
+3.3 Classification labels must be applied to all documents, emails, and files. Physical documents must be labelled in the header and footer of each page.
+
+4. RECLASSIFICATION AND DECLASSIFICATION
+4.1 Data may only be reclassified by the Data Owner or CISO.
+4.2 Any downward reclassification (e.g., from CONFIDENTIAL to INTERNAL) requires documented justification and approval from the Data Owner's line manager.
+
+5. DATA LABELLING
+All digital files must be labelled using the approved metadata tagging system. All emails must include the classification level in square brackets at the start of the subject line (e.g., [CONFIDENTIAL]).
+
+6. RETENTION AND DISPOSAL
+Data must be retained and disposed of in accordance with the Data Retention and Disposal Policy (ISP-015). Disposal of Confidential and above data requires the use of approved secure deletion tools (minimum DoD 5220.22-M standard for digital media or cross-cut shredding for physical).
+
+Approved by: CISO | Data Protection Officer | Next Review: 31 December 2024

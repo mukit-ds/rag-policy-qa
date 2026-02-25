@@ -1,0 +1,42 @@
+SECURE SOFTWARE DEVELOPMENT POLICY
+Document ID: ISP-019 | Version: 2.2 | Classification: Internal
+Effective Date: 01 March 2024 | Review Date: 28 February 2025
+
+1. PURPOSE
+This policy defines security requirements for the full software development lifecycle (SDLC), in accordance with ISO/IEC 27001:2022 Annex A Controls 8.25 through 8.31.
+
+2. SECURE DEVELOPMENT PRINCIPLES
+2.1 Security must be integrated throughout the SDLC (Shift Left), not added as a post-development activity.
+2.2 All development must follow the OWASP Secure Coding Guidelines as the minimum baseline.
+2.3 Security requirements must be defined and agreed at the design phase for every new system or major change.
+
+3. SECURITY REQUIREMENTS
+3.1 All applications must implement:
+   - Input validation and output encoding to prevent injection attacks
+   - Authentication and session management compliant with ISP-001
+   - Encryption for all sensitive data in transit and at rest per ISP-005
+   - Least-privilege principle for all service accounts and API credentials
+   - Comprehensive error handling that does not expose sensitive information
+
+4. CODE REVIEW AND TESTING
+4.1 All code changes must undergo peer review by at least one other developer before merging to the main branch.
+4.2 Automated Static Application Security Testing (SAST) must be integrated into the CI/CD pipeline and must pass before code can be promoted to staging.
+4.3 Dynamic Application Security Testing (DAST) must be performed before any new application or major release is deployed to production.
+4.4 Open-source and third-party components must be scanned for known vulnerabilities using an approved Software Composition Analysis (SCA) tool. Components with Critical or High vulnerabilities must not be used unless no alternative exists and a risk exception is approved.
+4.5 All new customer-facing applications must undergo a formal security assessment (penetration test) before going live in production.
+
+5. SECRETS MANAGEMENT
+5.1 Hard-coded credentials, API keys, certificates, or encryption keys in source code are strictly prohibited.
+5.2 Secrets must be managed through an approved secrets management solution (e.g., HashiCorp Vault, AWS Secrets Manager).
+5.3 Automated secrets scanning must be integrated into the CI/CD pipeline to detect any accidentally committed credentials.
+
+6. SECURE DEPLOYMENT
+6.1 Production deployments must follow the Change Management Policy (ISP-013).
+6.2 Infrastructure as Code (IaC) templates must be reviewed by the Security team before first use in production.
+6.3 Container images must be scanned for vulnerabilities before deployment. Images with Critical vulnerabilities must not be deployed.
+
+7. THIRD-PARTY LIBRARIES
+7.1 A Software Bill of Materials (SBOM) must be maintained for all production applications.
+7.2 Third-party libraries must be updated as per the vulnerability management SLAs in ISP-012.
+
+Approved by: Head of Engineering | CISO | Next Review: 28 February 2025
