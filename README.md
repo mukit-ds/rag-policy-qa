@@ -38,7 +38,7 @@ and answers natural language questions with cited, grounded responses.
 
 1. Clone the repository:
 ```bash
-   git clone https://github.com/<your-username>/rag-policy-qa.git
+   git clone git clone https://github.com/mukit-ds/rag-policy-qa.git
    cd rag-policy-qa
 ```
 
@@ -246,4 +246,5 @@ All 5 evaluation questions from `questions.json` were tested against the API:
 | `numpy` | Vector operations |
 | `python-dotenv` | Environment variable loading |
 | `pydantic` | Request/response validation |
+
 
